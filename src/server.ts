@@ -1,6 +1,14 @@
 import { app } from "./app";
 import { configs } from "./config";
+import { connectDb } from "./config/db";
+import logger from "./config/logger";
 
-app.listen(configs.port,()=>{
-    console.log(`server is running at port ${808}`)
-})
+
+const runServer = ()=>{
+    connectDb();
+    app.listen(configs.port,()=>{
+        logger.info(`server is running at port ${configs.port}`)
+    })
+}
+
+runServer()
